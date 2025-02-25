@@ -193,7 +193,22 @@ class AMDE(nn.Module):
         d2_seq_fts_layer1 = self.decoder_1(d2_trans_fts)
         return output_1, d1_seq_fts_layer1, output_2, d2_seq_fts_layer1
 
+        #feature hybrid
+        # print(output_1.shape) [b, 75]
+        # print(d2_trans_fts_layer1.shape) [b, 128]
+        d1_cat_fts = torch.cat((d1_trans_fts_layer1,output_1),dim=1)
+        d2_cat_fts = torch.cat((d2_trans_fts_layer1, output_2), dim=1)
+        # print('A: ',d1_cat_fts.shape , d2_cat_fts.shape) #[b, 203]
 
+        return d1_cat_fts , d2_cat_fts
+
+
+        # final_fts_cat=torch.cat((d1_cat_fts,d2_cat_fts),dim=1)
+
+        # final_fts_sum= d1_cat_fts+d2_cat_fts
+        # # result = self.decoder_trans_mpnn_cat(final_fts_cat)
+        result=self.decoder_trans_mpnn_sum(final_fts_sum)####transformer输出
+        # return result #[b,1]
 
 
 # help classes
@@ -281,8 +296,11 @@ class SelfAttention(nn.Module):
 
         attention_scores = attention_scores + attention_mask
 
+        # Normalize the attention scores to probabilities.
         attention_probs = nn.Softmax(dim=-1)(attention_scores)
 
+        # This is actually dropping out entire tokens to attend to, which might
+        # seem a bit unusual, but is taken from the original Transformer paper.
         attention_probs = self.dropout(attention_probs)
 
         context_layer = torch.matmul(attention_probs, value_layer)

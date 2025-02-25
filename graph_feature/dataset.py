@@ -2,12 +2,12 @@ import numpy as np
 import torch
 from torch.utils import data
 from rdkit import Chem
-from gen_mol_graph import *
+from graph_feature.gen_mol_graph import *
 from configs import Model_config
 config = Model_config()
 import pandas as pd
 from rdkit.Chem.rdchem import BondType
-from graph_features import atom_features
+from graph_feature.graph_features import atom_features
 from collections import defaultdict
 from subword_nmt.apply_bpe import BPE
 import codecs

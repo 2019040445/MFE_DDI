@@ -1,14 +1,18 @@
 import torch
 import numpy as np
 from torch import nn
-from AMDE import AMDE
-from modules import FeedForwardNetwork, GraphGather
+from utils.AMDE import AMDE
+from utils.modules import FeedForwardNetwork, GraphGather
 
 
 class Graph_encoder(AMDE):
 
     def __init__(self,node_features_1, edge_features_1, node_features_2, edge_features_2, out_features, **config):
 
+                 # msg_depth=4, msg_hidden_dim=200, att_depth=3, att_hidden_dim=200,
+                 # gather_width=100, gather_att_depth=3, gather_att_hidden_dim=100,
+                 # gather_emb_depth=3, gather_emb_hidden_dim=100,
+                 # out_depth=2, out_hidden_dim=100,out_layer_shrinkage=1.0,
 
         super(Graph_encoder, self).__init__(node_features_1, edge_features_1, node_features_2, edge_features_2,out_features)
 
