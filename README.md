@@ -13,6 +13,12 @@ A conda environment can be created with
 
 `conda env create -f environment.yaml`
 
+## dataset
+
+The dataset contains .zip file, please unzip it before training and predicting:
+
+`unzip dataset/sdf.zip`
+
 ## Training
 
 To train of the models run:
