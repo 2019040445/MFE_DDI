@@ -62,7 +62,7 @@ def test(data_generator, model):
 def main():
     args = parser.parse_args()
 
-    model = torch.load('savedmodels/MultiLevelDDI')
+    model = torch.load('savedmodel/MultiLevelDDI')
 
     model = model.to(device)
 
