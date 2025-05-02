@@ -62,7 +62,7 @@ def test(data_generator, model):
 def main():
     args = parser.parse_args()
 
-    model = torch.load('savedmodel_BIOSNAP_4-2_best/0.9842548076923077_full.pth')
+    model = torch.load('savedmodel/0.9842548076923077_full_biosnap.pth')
 
     model = model.to(device)
 
